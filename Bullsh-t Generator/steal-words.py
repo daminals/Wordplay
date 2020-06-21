@@ -1,10 +1,10 @@
-# First, you're going to need to import wordnet:
+# steal-words.py
+
 import nltk,sys,random
 from textblob import TextBlob,Word
 from nltk.corpus import wordnet
 
 nltk.download('wordnet')
-# Then, we're going to use the term "program" to find synsets like so:
 
 
 f = open("copypaste.txt", 'r')
