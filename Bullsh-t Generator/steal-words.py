@@ -4,7 +4,7 @@ import nltk,sys,random
 from textblob import TextBlob,Word
 from nltk.corpus import wordnet
 
-nltk.download('wordnet')
+nltk.download('omw-1.4')
 
 
 f = open("copypaste.txt", 'r')

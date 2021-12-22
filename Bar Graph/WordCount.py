@@ -55,15 +55,11 @@ def main():
     print(num_list,letter_list)
 
 
-
     fig = plt.figure()
     ax = fig.add_subplot(111)
     ax.bar(letter_list, num_list)
     plt.savefig('letters.png')
     plt.show()
-    
-
-
 
 
 if __name__ == '__main__':
