@@ -1,66 +1,39 @@
 # WordCount.py
-
 import matplotlib.pyplot as plt
+from collections import OrderedDict
 
+# read text
+file = open('read.txt')
+text = file.read()
+file.close()
 
-def main():
-    read = open('read.txt')
-    text = read.read()
-    read.close()
+# analyze letters
+charDict = {} # dictionaries are defined by curly braces
+def count_letter(character):
+  character = character.lower()
+  if character.isspace():
+    return
+  if character in charDict:
+      charDict[character] = charDict[character] + 1
+  else:
+    charDict[character] = 1
 
-    letterL = {
-        'a': [],
-        'b': [],
-        'c': [],
-        'd': [],
-        'e': [],
-        'f': [],
-        'g': [],
-        'h': [],
-        'i': [],
-        'j': [],
-        'k': [],
-        'l': [],
-        'm': [],
-        'n': [],
-        'o': [],
-        'p': [],
-        'q': [],
-        'r': [],
-        's': [],
-        't': [],
-        'u': [],
-        'v': [],
-        'w': [],
-        'x': [],
-        'y': [],
-        'z': [],
-    }
-    num_list = []
-    letter_list = []
+# loop through text
+for i in text:
+    count_letter(i)
 
-    def letters(let):
-        if let in letterL:
-            templist = letterL[let]
-            templist.append(let)
-            letterL[let] = templist
+charDict = OrderedDict(sorted(charDict.items()))
 
-    for i in text:
-        letters(i)
+char_list = [] # character
+num_list = [] # frequency
+# create x and y axes
+for x,y in charDict.items():
+    char_list.append(x)
+    num_list.append(y)
 
-    for x,y in letterL.items():
-        letter_list.append(x)
-        num_list.append(len(y))
-
-    print(num_list,letter_list)
-
-
-    fig = plt.figure()
-    ax = fig.add_subplot(111)
-    ax.bar(letter_list, num_list)
-    plt.savefig('letters.png')
-    plt.show()
-
-
-if __name__ == '__main__':
-    main()
+fig = plt.figure() # create a new figure
+ax = fig.add_subplot(111) # create a new bar graph within the figure
+fig.canvas.manager.set_window_title('The Great Gatsby') # title of window
+ax.bar(char_list, num_list) # add the data to the graph
+plt.savefig('chars.png') # download an image of the bar graph
+plt.show() # show the image
